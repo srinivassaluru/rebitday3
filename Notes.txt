@@ -559,10 +559,10 @@ Apply filter Object to your correspindance List / Table Object
 Day3 :
 --
 
-1. Screen Validations / Client Side Validations ( Error Messaging to UI )
-2. CRUD operations with JSON 
-3. Sorting 
-4. Table Control 
+1. Screen Validations / Client Side Validations ( Error Messaging to UI ) - Done
+2. CRUD operations with JSON - Done ( Update, Delete Assignment )
+3. Sorting - Assignment 
+4. Table Control  - Done
 5. OData Introduction  
 6. OData Bidning ( Northwind )
 7. Filter, Sort , (Filter + sort + multiple )
@@ -585,3 +585,94 @@ Validations
    3. Price should allow only numbers and max length 5 Digits 
    4. Price should not greater than 50000.
    --
+Note: 
+--
+
+All controls are started with UpperCase and Seaparted Eachword will be in UpperCase 
+
+1. List 
+2. Table 
+3. IconTabBar
+4. SimpleForm
+4. Input 
+5. ComboBox 
+
+
+All Aggregations are starts with lowercase and then separated eachword will be Uppercase 
+
+1. contentRight 
+2. contentLeft
+3. contentMiddle 
+4. items 
+
+
+Evernts are also starts with lowercase and then separated eachword will be in upper case 
+1. change
+2. liveChange
+3. select 
+
+
+ALl methods are starts with lowercase and then separated eachword will be in upper case 
+
+1. setText()
+2. setIcon()
+3. setEnabled()
+4. setVisible()
+5. getVisible()
+
+----
+
+OData :
+--
+
+1. OData is a standard protocol for creating and consuming REST based data services in SAP Systems. 
+2. Microsoft -> SAP 
+3. OData - > Open Data protocol 
+4. REST ( GET, POST,  PUT, DELETE )
+5. OData by deafult will give data in the format of XML , on demand request it will serve the data in JSON, xlsx 
+6. OData support metdata 
+
+    Entities 
+    EntityTypes
+    Association 
+    Navigation
+    Entity 
+       Properties 
+         Key filed 
+         data types
+         length 
+7. Capabilities 
+
+    1. pagination 
+    top 
+    skip 
+    2. filter 
+    3. sorting 
+    4. xml, json, and xlsx
+    5. Odata expects to be separted form one data to set to another by having proper keyfields 
+
+-----
+
+OData URL:
+---
+
+host+ protnunber + Namespace + service name + EntitySet / metadata ( uri options )
+ https://****:4040/sap/opu/odata/sap/servicename_SRV/$metdata
+ https://****:4040/sap/opu/odata/sap/servicename_SRV/EntitySet  -> Table Of Data -> Table Data 
+ https://****:4040/sap/opu/odata/sap/servicename_SRV/EntitySet(key='value1',key1='Value2')  -> Single Data -> structur 
+ 
+
+Note: Odata is available in 2 versions 
+
+Assignment: 
+---
+
+   Odata V2 
+   Odata V4 
+ 
+Northwind
+--
+
+https://services.odata.org/v2/northwind/northwind.svc/$metadata
+
+

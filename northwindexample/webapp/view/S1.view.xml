@@ -1,0 +1,41 @@
+<mvc:View controllerName="com.rebit.northwindexample.controller.S1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:table="sap.ui.table">
+    <Page id="page" title="{i18n>title}">
+
+
+     <table:Table>
+            <table:columns>
+					<table:Column width="11rem">
+						<Label text="Product Name" />
+						<table:template>
+							<Text text="{Name}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+                    <table:Column width="11rem">
+						<Label text="Product Price" />
+						<table:template>
+							<Text text="{Price}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+                    <table:Column width="11rem">
+						<Label text="Product Description" />
+						<table:template>
+							<Text text="{Notes}" wrapping="false" />
+						</table:template>
+					</table:Column>
+
+                    <table:Column width="11rem">
+						<Label text="Product Measures" />
+						<table:template>
+							<Text text="{Weight}" wrapping="false" />
+						</table:template>
+					</table:Column>
+            </table:columns>
+     </table:Table>
+
+    </Page>
+</mvc:View>

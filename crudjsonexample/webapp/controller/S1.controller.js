@@ -7,9 +7,10 @@ sap.ui.define([
     "sap/m/Button",
     "sap/m/Input",
     "sap/ui/core/Fragment",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/model/Filter"
 
-], (Controller, JSONModel, Dialog, Label, TextArea, Button, Input, Fragment, MessageBox) => {
+], (Controller, JSONModel, Dialog, Label, TextArea, Button, Input, Fragment, MessageBox, Filter) => {
     "use strict";
 
     return Controller.extend("com.rebit.crudjsonexample.controller.S1", {
@@ -210,6 +211,20 @@ sap.ui.define([
             } else {
                 return false;
             }
+        },
+        onProductListSearch: function(oEvent){
+            let searchQuery = oEvent.getParameters().query;
+            var productListObject = this.getView().byId("productList");
+            if(searchQuery){
+                var sNameFilterObject =  new Filter("Name", sap.ui.model.FilterOperator.Contains, searchQuery);
+                productListObject.getBinding("items").filter(sNameFilterObject);
+            }else{
+                productListObject.getBinding("items").filter([]);
+            }
+
+        },
+        handleDeleteProduct: function(){
+            //..
         }
     });
 });
