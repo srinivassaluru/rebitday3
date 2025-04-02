@@ -1,0 +1,556 @@
+Rebit Running Notes 
+——
+
+Bootstrapping 
+—
+
+  index.html / component.js 
+
+              * Theme of the Ui5
+ 	       * Loads Sap Core Lib
+
+ 		* Component.js 
+
+  Component.js 
+
+  manifest.json, sap.app, sap.ui, sap.ui5 [root view, routing, resources, models … ]
+
+    Root view 
+
+           App - > Full Screen 
+
+                         Master Detail. 
+
+    			  Flexible Column Layout , Start Pages, Middle Pages , End Pages 
+
+
+           S1 
+           
+                  Page Control 
+
+
+Note: Every view -> Controller 
+ 
+	   1: 1 
+
+￼
+
+
+1. Environment Set up 
+2. VS Code 
+3. Node Installation 
+4. Node version ( node -v ) 
+5. Fiori Extensions ( 5 ) 
+Note: VSCode close and re-open 
+ 6. FIORI Generator. 
+ 7.  Created Ui5 Application 
+
+— 
+ 8. Run the application ( preview of application , start no-flp , start Fiori run. ) 
+
+Note: Project changes we dont required again n again to preview 
+
+—————————
+
+Screen Designing 
+—
+
+ UX - User experience  ( figma )
+ UI  - User Interface 
+
+—
+
+
+Button, IconTabBar, SimpleForm, List, Input , MultiInput  - UserElements, Controls, Ui Controls, UI Elements , Classes
+
+—
+Libraries, name spaces 
+sap.m , sap.ui.layout, sap.ui.model, sap.fe, …
+
+1. Button 
+2. IconTabBar
+
+Controls :
+—-
+
+  1. Properties 
+  2. Events   3. Aggregations 
+  4. Methods - set, get properties 
+
+—
+
+
+MVC 
+—
+   View  - ** XML, JSON, HTML and JS 
+    Model - JSON, Odata and Resource ( 1. One Way 2. Two-Way 3. One-Time ) 
+    Controller - JS / Typescript 
+  Life Cycle hook methods 
+
+  onInit 
+  onBeforeRendering
+  onAfterRendering
+  onExit 
+
+  Business Validations 
+  Dynamic 
+  Client Server Communication 
+   ..
+   ..
+
+—————
+
+
+XML :
+—
+
+ < , > 
+
+ <Begin > 
+      ..
+.    …
+
+  </End> 
+
+ <Begin/>
+
+———————
+
+Ui5 -> Classes 
+———
+
+HTMl5 :
+—
+
+Styles :
+ 
+1. Inline Style Sheets 
+2. Internal Style Sheets 
+3. External Style Sheet 
+
+
+<button style=“color:red”/>
+
+
+<style>
+
+	button{
+		color: red;
+ 	}
+</style>
+
+<link rel="stylesheet" href="styles/stye.css“ data-sap-ui-ready="true">
+
+External file style.css 
+
+button{
+		color: red;
+ 	}
+
+——
+
+  1. ID bases #id{
+            ..
+	    ..
+	   ..
+     }
+
+  2. Classname{ sapUiTinyMarginEnd, sapUiSmallMarginEnd, sapUiMediumMarginEnd, sapUiLargeMarginEnd
+
+		..
+		..
+		..
+	}
+
+ 3. Uielement name {
+
+}
+
+  button{
+
+}
+
+
+HTML:
+   
+
+ 1.  Canvas ( Digital Signature, Captcha code, PDF )
+ 2.  Media Queries 
+ 3.  Audio, video 
+ 4.  LocalStorage 
+ 5. Semantic elements 
+
+
+Bidning: {}
+—
+  1. Resource Model - {}
+  2. Device Model    - {} 
+
+——
+
+
+Backend 
+—
+
+Embedded System 
+Central Hub System 
+
+
+  1. ABAP ( Odata ) 
+  2. CDS ( S4) 
+  3. HANA XS ( Hana XS Engine ) ( XSOData ) ( XSJS ) 
+  4. HANA XSA 
+  5.  CAPM Java / Node JS 
+  
+
+——————
+
+Routing :
+—
+
+manifest.json > routing 
+
+ ->Router Class
+
+ -> routes [
+   
+Route1, route2, route3,…  
+Target1 Target2 Target3
+
+]
+
+-> targets [
+
+  Target1, Target2, Target3 
+   View source S1, View source S2, View source S3,
+]
+
+
+Note: Among all routes only 1 route will be default . Later all other routes will render on - demand 
+
+
+Event , router object we need to retrieve and then apply navTo method 
+
+NavTo method has 2 parameters 
+
+ 1 route name -> Route1, route2, route3,…  
+
+ 2 object {} -> optional 
+
+——
+
+Java Script ( End- End ) 
+
+Screen Validations , ( Error to present Ui )
+JSON Binding
+Odata Binding ( Northwind ) 
+—
+
+Assignment 
+Project 
+——
+
+Day 2:
+—
+
+Javascript :
+—
+
+1. Identifiers 
+2. Variables 
+3. Data types 
+4. Operators and Expressions 
+5. Branching ( Control structures )
+6. Functions 
+7. Exception Handling 
+
+
+Identifiers 
+—
+
+   var 1sValue = ‘value’;
+
+   handleSelectionChange : function(){
+
+   }
+
+
+Reserved Words / Keywords:
+—
+
+  Var, if , else, switch, ……
+
+
+Variable :
+—
+  var , let, constant 
+
+   var sValue = "Name” ; //. String 
+   var sValue =  true;  // Boolean 
+   var sValue =  12.34; // Decimal 
+   var sValue =  "E"; // Single Character 
+   var sValue =  12; // Integer 
+
+{
+    
+}
+
+
+Local variable , Global Variable 
+
+
+——
+
+Array 
+var sValue = ["Trainin1“ , 10, 4500.34, false ];
+ 				0, 1,2,3
+sValue[0] 
+
+—
+
+Object 
+var sValue = {
+         “Name”: “Trainin1”,
+ 	“count”: 10, 
+	“cost”: 4500.34,
+        “Extension”: false
+ };
+
+sValue[“Name”]
+sValue.Name
+
+—
+
+Array + object = JSON 
+
+Var sValue = [
+{
+         “Name”: “Trainin1”,
+ 	“count”: 10, 
+	“cost”: 4500.34,
+        “Extension”: false,
+	“contacts”: [
+				“Tel”: 12312321323213,
+				“cell”: 123123213213
+		]
+ },
+
+{
+         “Name”: “Trainin1”,
+ 	“count”: 10, 
+	“cost”: 4500.34,
+        “Extension”: false
+ },
+{
+         “Name”: “Trainin1”,
+ 	“count”: 10, 
+	“cost”: 4500.34,
+        “Extension”: false
+ }
+
+];
+
+
+——
++ 
+
+ Both values are numeric then it treat as an addition , if one among consists string then it will treat as a concatenation . 
+
+——
+sContext = "/EntitySet(S1=‘12123213,’ s2= ‘adasdasdasd’)”
+
+
+---------
+
+Operators and Expressions 
+--
+
+1. Arthematic Operators ( +, -, /, % ,... )
+2. Relational Operators ( =, ==, <=, >= , === , !== )
+
+ var s = "12";
+ var y = 12;
+ s == y => ? true 
+ s === y , false 
+
+3. Conditional Operator 
+? : ; 
+(s==y && s===y)?"s is Equale to y ": "s is not equale to y "; 
+!(s==y || s===y)?"s is Equale to y ": "s is not equale to y "; 
+
+4. Asssingment operators 
+   var s= s+5; var s+=5;
+
+5. Increment / Decerement operator 
+  
+  ++, -- 
+
+6. Special operators ( + , .)
+
+7. Logical Operators 
+
+   && 
+
+   ||
+
+   !
+----
+
+Simple If 
+---------
+if(){
+
+
+}
+
+
+If .. else 
+-------
+if(){
+
+
+}else{
+
+
+}
+------
+If ... else ,, ladder 
+
+if(){
+
+
+}else if(){
+
+  
+}else if(){
+
+
+}else{
+
+
+}
+
+------
+switch(condition){
+
+  case matches: statement ; 
+                break;
+  case matches: statement ; 
+                break;
+  deafult: statment;
+}
+
+
+Looping :
+--
+
+1. for 
+2. while 
+
+for 
+---
+
+for(var i=0;i <5; i++){
+
+  console.log(i);
+}
+---
+
+var i=0;
+while(i<5){
+   console.log(i);
+   i++;
+}
+
+----
+
+
+
+
+
+
+
+functions 
+--
+
+1. function with parameters with return value 
+2. function without parameters with return values 
+3. function with parameters and without return value 
+4. function without parameters and with return value 
+ 
+1 
+function xyz(x,y){
+
+  return x+y;
+
+}
+
+2
+function xyz(){
+
+  return "x"+"y";
+
+}
+
+3
+
+function xyz(x,y){
+
+  console.log("asdasda");
+
+}
+
+4
+function xyz(){
+
+  return "x";
+}
+
+
+return  [ad, 2ee];
+
+return {
+
+
+};
+
+----
+
+JSON Model 
+--
+
+1. Local Model / Dummy Data / Mock Data 
+2. Its reduce the network load 
+3. Its also reduce the lot of hardcoded in views 
+4. TO maintain multiple views to pass data we use again json model 
+
+---
+
+Approach1 :
+---
+Adding the mockdata within controller and assign to view 
+
+Approach2 :
+--
+Adding JSON file and then assign to view 
+
+Approach3 :
+--
+Adding JSON file to the manifest.json ( available json model across all the views / application )
+
+
+*******
+Filter 
+---
+
+1. Read Entered Value / Selected Value 
+2. Construct Filter Object 
+
+FilterObject is expecting 3 Major Parameters 
+
+  1. Path ( Name of the Property that we want to filter )
+  2. Operator ( EQ, Contains ,....)
+  3. Value 
+
+Apply filter Object to your correspindance List / Table Object 
+

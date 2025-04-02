@@ -1,0 +1,29 @@
+<mvc:View
+    controllerName="com.rebit.jsonmodelexample.controller.S2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page
+        id="pag2"
+        title="{i18n>title}"
+    >
+       <!--- Step 4 Data Binding -->
+        <List
+            items="{/ProductCollection}"
+            headerText="Products"
+        >
+            <ObjectListItem
+                title="{Name}"
+                type="Active"
+                press="onListItemPress"
+                number="{Price}"
+                numberUnit="{CurrencyCode}"
+            >
+                <ObjectAttribute text="{WeightMeasure} {WeightUnit}" />
+                <ObjectAttribute
+                    text="{Width} x {Depth} x {Height} {DimUnit}"
+                />
+            </ObjectListItem>
+        </List>
+    </Page>
+</mvc:View>

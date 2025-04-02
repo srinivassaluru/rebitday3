@@ -1,0 +1,44 @@
+<mvc:View
+    controllerName="com.rebit.jsonmodelexample.controller.S1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+       <!--- Step 4 Data Binding -->
+
+       <SearchField search="onProductListSearch"></SearchField>
+        <List
+            items="{productsData>/ProductCollection}"
+            headerText="Products"
+            id="productList"
+        >
+        <headerToolbar>
+            <Toolbar>
+                  <Title text="Products"></Title>
+                 <ToolbarSpacer></ToolbarSpacer>
+                 <Select items="{productsData>/ProductCollectionStats/Filters/0/values}" change="onProductCategorySelection">
+                    <items>
+                        <core:Item text="{productsData>text}" key="{productsData>data}"/>
+                    </items>
+                 </Select>
+            </Toolbar>
+        </headerToolbar>
+            <ObjectListItem
+                title="{productsData>Name}"
+                type="Active"
+                press="onListItemPress"
+                number="{productsData>Price}"
+                numberUnit="{productsData>CurrencyCode}"
+            >
+                <ObjectAttribute text="{productsData>WeightMeasure} {productsData>WeightUnit}" />
+                <ObjectAttribute
+                    text="{productsData>Width} x {productsData>Depth} x {productsData>Height} {productsData>DimUnit}"
+                />
+            </ObjectListItem>
+        </List>
+    </Page>
+</mvc:View>

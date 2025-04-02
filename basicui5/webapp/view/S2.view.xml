@@ -1,0 +1,78 @@
+<mvc:View
+    controllerName="com.rebit.fico.basicui5.controller.S2"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:ndc="sap.ndc"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+
+    >
+
+      <Panel>
+            <Label text="Employee Number"/>
+            <Input showValueHelp="true"/>
+             <Label text="Employee Name"/>
+            <Input enabled="false"/>
+             <Label text="Leave Type"/>
+            <Select width="100%">
+            </Select>
+             <Label text="Leave Dates"/>
+            <DatePicker ></DatePicker>
+             <Label text="Notes"/>
+            <TextArea width="100%"/>
+            
+      </Panel>
+      
+        <footer>
+            <Bar>
+                <contentRight>
+                    <ndc:BarcodeScannerButton
+                        id="sampleBarcodeScannerButton"
+                        scanSuccess="onScanSuccess"
+                        scanFail="onScanError"
+                        inputLiveUpdate="onScanLiveupdate"
+                        dialogTitle="Barcode Scanner Button Sample"
+                        class="sapUiTinyMarginEnd"
+                    />
+
+                    <Button
+                        class="customAccept"
+                        text="Approve"
+                        type="Accept"
+                        enabled="true"
+                        icon="sap-icon://accept"
+                        press="onApprove"
+                    />
+
+                      <Button
+                        visible="{device>/system/desktop}"
+                        text="Cancel"
+                        type="Emphasized"
+                        enabled="true"
+                        press="onApprove"
+                    />
+                     <Button
+                        visible="{device>/system/desktop}"
+                        text="Clear"
+                        type="Emphasized"
+                        enabled="true"
+                       press="onApprove"
+                    />
+                    <Button
+                        text="Reject"
+                        type="Reject"
+                        enabled="true"
+                        icon="sap-icon://decline"
+                        press="onReject"
+                    />
+                </contentRight>
+
+                <contentLeft>
+                    <Text text="* UI Action" />
+                </contentLeft>
+            </Bar>
+        </footer>
+    </Page>
+</mvc:View>

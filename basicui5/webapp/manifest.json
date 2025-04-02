@@ -1,0 +1,125 @@
+{
+  "_version": "1.60.0",
+  "sap.app": {
+    "id": "com.rebit.fico.basicui5",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.17.0",
+      "toolsId": "30208621-6ffb-4d0e-85de-df9b08547e6f"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/v2/northwind/northwind.svc/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.rebit.fico.basicui5.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "com.rebit.fico.basicui5.view",
+        "async": true,
+        "viewPath": "com.rebit.fico.basicui5.view"
+      },
+      "routes": [
+        {
+          "name": "RouteS1",
+          "pattern": "",
+          "target": [
+            "TargetS1"
+          ]
+        },
+        {
+          "name": "RouteS2",
+          "pattern": "screen2",
+          "target": [
+            "TargetS2"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetS1": {
+          "id": "S1",
+          "name": "S1"
+        },
+        "TargetS2": {
+          "id": "S2",
+          "name": "S2"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "com.rebit.fico.basicui5.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
