@@ -573,3 +573,15 @@ Day3 :
 9. OData Project Creating 
 
 -----------
+
+Add -> New Screen 
+
+   1. Directly writing all UI code within controller ( Not Reccommended )
+   2. Create fragment and load the fragment on click of add 
+
+Validations
+   1. Mandatory 
+   2. Name of the product max length 10 Characters 
+   3. Price should allow only numbers and max length 5 Digits 
+   4. Price should not greater than 50000.
+   --

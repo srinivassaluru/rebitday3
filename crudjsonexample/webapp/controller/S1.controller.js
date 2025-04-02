@@ -1,8 +1,15 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/m/Dialog",
+    "sap/m/Label",
+    "sap/m/TextArea",
+    "sap/m/Button",
+    "sap/m/Input",
+    "sap/ui/core/Fragment",
+    "sap/m/MessageBox"
 
-], (Controller, JSONModel) => {
+], (Controller, JSONModel, Dialog, Label, TextArea, Button, Input, Fragment, MessageBox) => {
     "use strict";
 
     return Controller.extend("com.rebit.crudjsonexample.controller.S1", {
@@ -75,36 +82,134 @@ sap.ui.define([
             // sView.setModel(jsonModel);
 
         },
-        handleAddProduct: function(){
+        handleAddProduct: function () {
+            if (!this.oSubmitDialog) { // Global variable
+                // this.oSubmitDialog = new Dialog({
+                //     title: "Add Product",
+                //     content: [
+                //         new Label({
+                //             text: "Product Name"
+                //         }),
+                //         new Input({
+                //             width: "100%",
+                //             placeholder: "Add note (required)",
+                //             liveChange: function (oEvent) {
+                //                 var sText = oEvent.getParameter("value");
+                //                 this.oSubmitDialog.getBeginButton().setEnabled(sText.length > 0);
+                //             }.bind(this)
+                //         }),
+                //         new Label({
+                //             text: "Product Price"
+                //         }),
+                //         new Input({
 
-            var sNewData = {
-                "ProductId": "HT-100011111",
-                "Category": "Laptops",
-                "MainCategory": "Computer Systems",
-                "TaxTarifCode": "1",
-                "SupplierName": "Very Best Screens",
-                "WeightMeasure": 4.2,
-                "WeightUnit": "KG",
-                "Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
-                "Name": "Rebit Book",
-                "DateOfSale": "2017-03-26",
-                "ProductPicUrl": "test-resources/sap/ui/documentation/sdk/images/HT-1000.jpg",
-                "Status": "Available",
-                "Quantity": 10,
-                "UoM": "PC",
-                "CurrencyCode": "EUR",
-                "Price": 956,
-                "Width": 30,
-                "Depth": 18,
-                "Height": 3,
-                "DimUnit": "cm"
-            };
+                //         })
+                //     ],
+                //     beginButton: new Button({
+                //         type: "Emphasized",
+                //         text: "Submit",
+                //         enabled: false,
+                //         press: function () {
+                //             var sText = Element.getElementById("submissionNote").getValue();
+                //             MessageToast.show("Note is: " + sText);
+                //             this.oSubmitDialog.close();
+                //         }.bind(this)
+                //     }),
+                //     endButton: new Button({
+                //         text: "Cancel",
+                //         press: function () {
+                //             this.oSubmitDialog.close();
+                //         }.bind(this)
+                //     })
+                // });
+                this.oSubmitDialog = Fragment.load({
+                    name: "com.rebit.crudjsonexample.fragments.AddProduct",  // path of the fragment
+                    controller: this // s1Controller
+                });
+            }
+            this.oSubmitDialog.then(function (dialog) {
+                sap.ui.getCore().byId("productName").setValue("");
+                sap.ui.getCore().byId("productPrice").setValue("");
+                dialog.open();
 
-            var existingJsonModel = this.getView().getModel();
-            var existingData = existingJsonModel.getData(); // []
-            existingData.ProductCollection.push(sNewData);
-            existingJsonModel.setProperty("/ProductCollection", existingData.ProductCollection);
-                        
+            });
+        },
+        handleCancel: function () {
+            this.oSubmitDialog.then(function (dialog) {
+                dialog.close();
+            });
+        },
+        handleSubmit: function () {
+            let sProductSource = sap.ui.getCore().byId("productName");
+            var sProductName = sProductSource.getValue();
+            var sProductPrice = sap.ui.getCore().byId("productPrice").getValue();
+            let sFlagValidation = this.screenValidations(sProductName, sProductPrice);
+            if (sFlagValidation) {
+                var sNewData = {
+                    "ProductId": "HT-100011111",
+                    "Category": "Laptops",
+                    "MainCategory": "Computer Systems",
+                    "TaxTarifCode": "1",
+                    "SupplierName": "Very Best Screens",
+                    "WeightMeasure": 4.2,
+                    "WeightUnit": "KG",
+                    "Description": "Notebook Basic 15 with 2,80 GHz quad core, 15\" LCD, 4 GB DDR3 RAM, 500 GB Hard Disc, Windows 8 Pro",
+                    "Name": sProductName,
+                    "DateOfSale": "2017-03-26",
+                    "ProductPicUrl": "test-resources/sap/ui/documentation/sdk/images/HT-1000.jpg",
+                    "Status": "Available",
+                    "Quantity": 10,
+                    "UoM": "PC",
+                    "CurrencyCode": "EUR",
+                    "Price": sProductPrice,
+                    "Width": 30,
+                    "Depth": 18,
+                    "Height": 3,
+                    "DimUnit": "cm"
+                };
+
+                var existingJsonModel = this.getView().getModel();
+                var existingData = existingJsonModel.getData(); // []
+                existingData.ProductCollection.push(sNewData);
+                existingJsonModel.setProperty("/ProductCollection", existingData.ProductCollection);
+
+                this.oSubmitDialog.then(function (dialog) {
+                    dialog.close();
+                });
+            } else {
+                sProductSource.setValueState("Error");
+                sProductSource.setValueStateText("Please Enter Product Name");
+
+                sap.ui.getCore().byId("productPrice").setValueState("Error");
+                sap.ui.getCore().byId("productPrice").setValueStateText("Please Enter Product Price");
+
+                MessageBox.error("Please fill the mandaory values");
+            }
+
+        },
+        handleProductNameChange: function (oEvent) {
+            var sValue = oEvent.getSource().getValue();
+            if (sValue) {
+                sap.ui.getCore().byId("productName").setValueState("None");
+            }
+        },
+        handleProudctPrice: function (oEvent) {
+            var sValue = oEvent.getSource().getValue();
+            if (sValue) {
+                let sFlag = /^\d+$/.test(sValue);
+                if (!sFlag) {
+                    sap.ui.getCore().byId("productPrice").setValueState("Error");
+                } else {
+                    sap.ui.getCore().byId("productPrice").setValueState("None");
+                }
+            }
+        },
+        screenValidations: function (sProductName, sProductPrice) {
+            if (sProductName && sProductPrice) { // Mandatory Check
+                return true;
+            } else {
+                return false;
+            }
         }
     });
 });
