@@ -88,7 +88,33 @@ sap.ui.define([
             }
 
         },
-        onProductCategorySelection: function(){
+        onProductCategorySelection: function(oEvent){
+
+            // Approach1 
+            // var sSource = oEvent.getSource(); // It will give you the source of the control object, here Select Control Object .set****, .get***
+            // var sSelectedItem = sSource.getSelectedItem(); // here we will recieved selected Item of the Object , will returen Item source / Item Object .set***, get***
+            // var sSelectedKey = sSelectedItem.getKey(); // It will return key value of Core Item/ Selected item 
+            // var sSelectedText = sSelectedItem.getText();
+            // console.log(sSelectedKey  + "=---------" + sSelectedText);
+
+            // Approach1 with short format of getting the value 
+            // var sSelectedText = oEvent.getSource().getSelectedItem().getText();// oEvent.getSource() - Select , // oEvent.getSource().getSelectedItem() - > core->Item Control 
+            // console.log(sSelectedText);
+
+            //Approach2 
+            // var selectedText = oEvent.getParameters().selectedItem.getText(); // It will return core->Item Control 
+            // console.log(selectedText);
+
+            //Approach2 
+            // var selectedText = oEvent.getParameter("selectedItem").getText(); // It will return core->Item Control 
+            // console.log(selectedText);
+
+
+            //Approach3 
+            var sSelectedText = this.getView().byId("productCategorySelectId").getSelectedItem().getText(); 
+            console.log(sSelectedText);
+
+            
             var sNameFilterObject =  new Filter("Category", sap.ui.model.FilterOperator.Contains, "Laptops");
             var productListObject = this.getView().byId("productList");
             productListObject.getBinding("items").filter(sNameFilterObject);

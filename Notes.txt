@@ -554,3 +554,22 @@ FilterObject is expecting 3 Major Parameters
 
 Apply filter Object to your correspindance List / Table Object 
 
+
+--------------------------
+Day3 :
+--
+
+1. Screen Validations / Client Side Validations ( Error Messaging to UI )
+2. CRUD operations with JSON 
+3. Sorting 
+4. Table Control 
+5. OData Introduction  
+6. OData Bidning ( Northwind )
+7. Filter, Sort , (Filter + sort + multiple )
+8. Routing 
+   -> With Paramters 
+   -> Read Parameters 
+
+9. OData Project Creating 
+
+-----------

@@ -20,7 +20,7 @@
             <Toolbar>
                   <Title text="Products"></Title>
                  <ToolbarSpacer></ToolbarSpacer>
-                 <Select items="{productsData>/ProductCollectionStats/Filters/0/values}" change="onProductCategorySelection">
+                 <Select items="{productsData>/ProductCollectionStats/Filters/0/values}" change="onProductCategorySelection" id="productCategorySelectId">
                     <items>
                         <core:Item text="{productsData>text}" key="{productsData>data}"/>
                     </items>
